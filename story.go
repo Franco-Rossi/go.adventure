@@ -64,18 +64,20 @@ var defaultHandlerTmpl = `<!DOCTYPE html>
     </style>
   </head>
   <body>
-    <h1>{{.Title}}</h1>
-    {{range .Paragraphs}}
-    <p>{{.}}</p>
-    {{end}}
+	<section class="page">
+		<h1>{{.Title}}</h1>
+		{{range .Paragraphs}}
+		<p>{{.}}</p>
+		{{end}}
 
-    <ul>
-      {{range .Options}}
-      <li>
-        <a href="/{{.Chapter}}">{{.Text}}</a>
-      </li>
-      {{end}}
-    </ul>
+		<ul>
+		{{range .Options}}
+		<li>
+			<a href="/{{.Chapter}}">{{.Text}}</a>
+		</li>
+		{{end}}
+		</ul>
+	</section>
   </body>
 </html>`
 
