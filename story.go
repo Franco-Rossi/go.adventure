@@ -57,12 +57,13 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if chapter, ok := h.s[path]; ok {
 		err := tpl.Execute(w, chapter)
-		log.Printf("%v", err)
-		http.Error(w, "Something went wrong", http.StatusInternalServerError)
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
+			http.Error(w, "Something went wrong", http.StatusInternalServerError)
 		}
+		return
 	}
+	http.Error(w, "Chapter not found.", http.StatusNotFound)
 }
 
 func JsonStory(r io.Reader) (Story, error) {
